@@ -27,7 +27,6 @@
 					"page" : 0,
 					"required" : true,
 					"pattern" : "\\w+\\/\\w+(\\/\\w+)+",
-					"replaceKind" : "mybatis-mapper-locations"
 				},{
 					"name" : "topLevelPackage",
 					"description" : "Please specify the top-level package e.g. com.mycompany.myapp",
@@ -44,8 +43,6 @@
 
 		"projectName" : "projectName",
 		
-		"mybatis-mapper-locations" : "mytld/mycompany/myapp",
-
 		"pages" : {
 			"page" : [
 					{
