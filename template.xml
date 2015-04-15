@@ -1,5 +1,5 @@
 <template>
-	<descriptor id="projectName"
+	<descriptor id="org.plateau.integration.sts.template.smm"
 		name="Spring Mybatis Mysql"
 		category="Integration"
 		kind="template"
