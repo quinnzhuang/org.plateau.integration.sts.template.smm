@@ -1,0 +1,14 @@
+<template>
+	<descriptor id="projectName"
+		name="Spring Mybatis Mysql"
+		category="Integration"
+		kind="template"
+		requiresbundle="org.eclipse.m2e.core"
+		version="1.0.0">
+		<description>
+			A new Spring MVC web application with Mybatis and Mysql development project
+		</description>
+	</descriptor>
+	<project path=""/>
+	<json path="wizard.json"/>
+</template>
