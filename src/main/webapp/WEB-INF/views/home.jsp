@@ -1,11 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<% String s = "mytld.mycompany.myapp";
-	String[] s1 = s.split("\\.");
-	for(String str : s1) {
-		System.out.println(str);
-	}
-%>
 <html>
 <head>
 	<title>Home</title>
@@ -14,7 +8,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/demo.css" type="text/css"/>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		demo("aaaa");
+		demo("Please enter the form below and submit!");
 	})
 	</script>
 </head>
@@ -29,5 +23,13 @@
 
 <p class="slide"><a href="#" class="btn-slide">Slide Panel</a></p>
 <div id="test">afda</div>
+<div>
+	<form name="myform" id="myform" action="/demo/addition">
+		<p><label>name:</label><input name="name" /></p>
+		<p><label>desc:</label><input name="desc" /></p>
+	</form>
+	<p><input type="button" onclick="submit()" value="submit"/></p>
+	<div id="result"></div>
+</div>
 </body>
 </html>

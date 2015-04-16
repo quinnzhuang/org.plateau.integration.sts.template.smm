@@ -46,7 +46,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/addition", method = RequestMethod.GET)
+	@RequestMapping(value = "/addition", method = RequestMethod.POST)
 	public @ResponseBody Demo save(@ModelAttribute Demo demo) {
 		service.saveDemo(demo);
 		return demo;
