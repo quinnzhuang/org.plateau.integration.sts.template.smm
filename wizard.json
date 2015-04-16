@@ -21,6 +21,12 @@
 					"page" : 0,
 					"required" : true,
 				},{
+					"name" : "web-context-root",
+					"description" : "Please enter the context root",
+					"type" : "java.lang.String",
+					"page" : 0,
+					"required" : true,
+				},{
 					"name" : "mybatis-mapper-locations",
 					"description" : "Please specify the mapperLocations e.g. com/mycompany/myapp",
 					"type" : "java.lang.String",
