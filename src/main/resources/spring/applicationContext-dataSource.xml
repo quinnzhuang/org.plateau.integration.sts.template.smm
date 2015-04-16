@@ -11,52 +11,58 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- 引入配置文件 -->
+	<!-- Properties place holder support -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:config/jdbc.properties" />
 	</bean>
 
-	<!-- 使用tomcat链接池（貌似比dbcp好） -->
+	<!-- Use the tomcat connection pool（better than dbcp） -->
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
-		<!-- 初始化连接大小 -->
+		<!-- Init size -->
 		<property name="initialSize" value="${initialSize}"></property>
-		<!-- 连接池最大数量 -->
+		<!-- max size -->
 		<property name="maxActive" value="${maxActive}"></property>
-		<!-- 连接池最大空闲 -->
+		<!-- max idle size -->
 		<property name="maxIdle" value="${maxIdle}"></property>
-		<!-- 连接池最小空闲 -->
+		<!-- min idle size -->
 		<property name="minIdle" value="${minIdle}"></property>
-		<!-- 获取连接最大等待时间 -->
+		<!-- max wait time -->
 		<property name="maxWait" value="${maxWait}"></property>
 	</bean>
 
-	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<!-- Integrate MyBatis into Spring，dispense with configuration files for MyBatis -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- 自动扫描mapping.xml文件 -->
-		<property name="mapperLocations" value="classpath:mybatis-mapper-locations/dao/**/*.xml"></property>
+		<!-- scan "mapping.xml" files automatically-->
+		<property name="mapperLocations" value="classpath:mybatis-mapper-locations/**/*.xml"></property>
 	</bean>
 
-	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<!-- BeanDefinitionRegistryPostProcessor that searches recursively starting from a base package for
+ 		interfaces and registers them as MapperFactoryBean. Note that only interfaces with at
+		least one method will be registered; concrete classes will be ignored -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- Packages for DAO interfaces，Spring will scan them automatically --> 
 		<property name="basePackage" value="mytld.mycompany.myapp.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 		<property name="annotationClass" value="org.springframework.stereotype.Repository" />
 	</bean>
 
-	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<!-- Transaction manager, use JtaTransactionManager for global tx -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+	<!-- Transaction support, register transaction bean definitions(e.g TransactionAttributeSource, 
+		TransactionInterceptor, TransactionAttributeSourceAdvisor, AUTO_PROXY_CREATOR_BEAN_NAME) for role of INFRASTRUCTURE -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-	<!-- mybatis-spring自动扫描配置 -->
+	<!-- scan mybatis-spring class automatically -->
 	<!-- mybatis-spring:scan base-package="" /> -->
 </beans>
