@@ -17,7 +17,7 @@
 		<property name="location" value="classpath:config/jdbc.properties" />
 	</bean>
 
-	<!-- Use the tomcat connection pool（better than dbcp） -->
+	<!-- Use the tomcat connection pool (better than dbcp) -->
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
