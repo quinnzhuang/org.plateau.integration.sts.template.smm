@@ -29,7 +29,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener> -->
 	
-	<!-- Spring out of memery listener-->
+	<!-- Spring out of memory listener-->
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
