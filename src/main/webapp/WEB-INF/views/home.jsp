@@ -24,7 +24,7 @@
 <p class="slide"><a href="#" class="btn-slide">Slide Panel</a></p>
 <div id="test">afda</div>
 <div>
-	<form name="myform" id="myform" action="/demo/addition">
+	<form name="myform" id="myform" action="/web-context-root/addition">
 		<p><label>name:</label><input name="name" /></p>
 		<p><label>desc:</label><input name="desc" /></p>
 	</form>
